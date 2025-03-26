@@ -1,21 +1,26 @@
+import React, { useState } from "react";
+import AdminProduct from "./AdminProduct";
 
-import React from "react";
-import products from "../constants/products";
-import { Link } from "react-router-dom";
+const initialProducts = [
+  { id: 1, name: "iPhone 15", price: "$999" },
+  { id: 2, name: "Samsung S23", price: "$899" }
+];
 
-function Admin() {
+const Admin = () => {
+  const [products, setProducts] = useState(initialProducts);
+
+  const deleteProduct = (id) => {
+    setProducts(products.filter(product => product.id !== id));
+  };
+
   return (
     <div>
-      <h1>Admin Panel</h1>
-      <ul>
-        <p key={products[0].id}>
-          <Link to={`/admin/products/${products[0].id}`}>
-            {products[0].name} - ${products[0].price}
-          </Link>
-        </p>
-      </ul>
+      <h2>Admin Panel</h2>
+      {products.map((product) => (
+        <AdminProduct key={product.id} product={product} onDelete={deleteProduct} />
+      ))}
     </div>
   );
-}
+};
 
 export default Admin;
