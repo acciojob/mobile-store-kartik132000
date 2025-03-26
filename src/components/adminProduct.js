@@ -1,18 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 
-const AdminProdcut = () => {
-  const { id } = useParams();
-
+const AdminProduct = ({ product, onDelete }) => {
   return (
     <div>
-      <p>Product {id}</p>
-      <input name="title" id="title" />
-
-      <button>Delete</button>
-      <button>Save</button>
+      <h3>{product.name} - {product.price}</h3>
+      <button onClick={() => onDelete(product.id)}>Delete</button>
     </div>
   );
 };
 
-export default AdminProdcut;
+export default AdminProduct;
