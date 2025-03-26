@@ -1,18 +1,24 @@
-// src/components/Home.js
 import React from "react";
 import { Link } from "react-router-dom";
-import products from "../constants/products";
+
+const products = [
+  { id: 1, name: "iPhone 15", price: "$999" },
+  { id: 2, name: "Samsung S23", price: "$899" }
+];
 
 const Home = () => {
   return (
     <div>
-      {products.map((item) => (
-        <Link key={item.id} to={`/products/${item.id}`}>
-          {item.name} <button className="btn">Buy</button>
-        </Link>
-      ))}
+      <h2>Available Mobiles</h2>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <Link to={`/products/${product.id}`}>{product.name} - {product.price}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Home; // Ensure this export is correct
+export default Home;
